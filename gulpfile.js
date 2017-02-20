@@ -11,7 +11,6 @@ gulp.task("sass", function() {
 gulp.task("webserver", function() {
   gulp.src("./")
   .pipe(webserver({
-    livereload: true,
     open: true
   }));
 });
