@@ -73,7 +73,9 @@ $(".fa").click(function() {
 
 // figure out if someone wins the game
 
-//
+/* if (space1 && space2 && space3 === x) {
+  x wins
+}
 
-
+*/
 // display result when the end of the game occurs
