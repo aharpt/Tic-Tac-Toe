@@ -44,15 +44,3 @@ switch (randomNumberHolder) {
     numOfOsRemaining -= 1;
     break;
 }
-
-
-if (numOfOsRemaining === numOfXsRemaining && randomNumberHolder === 1) {
-  document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-  $(".fa-opera").draggable("disable").addClass("disabled");
-  numOfXsRemaining -= 1;
-  console.log("O's turn");
-} else if (numOfOsRemaining === numOfXsRemaining && randomNumberHolder === 2) {
-  document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-  $(".fa-times").draggable("disable").addClass("disabled");
-  console.log("X's turn");
-}
