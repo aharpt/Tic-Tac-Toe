@@ -1,0 +1,27 @@
+.outer-space-container {
+  width: 156px;
+}
+
+.space-container {
+  display: flex;
+  flex-direction: row;
+  width: 156px;
+}
+
+.space {
+border: 1px solid black;
+height: 50px;
+width: 50px;
+}
+
+.x-container {
+  display: flex;
+}
+
+.highlight {
+  color: red;
+}
+
+.disabled {
+  color: rgba(0,0,0,.65);
+}
