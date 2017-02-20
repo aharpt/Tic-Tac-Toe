@@ -8,6 +8,14 @@ gulp.task("sass", function() {
   .pipe(gulp.dest("./"));
 });
 
+gulp.task("webserver", function() {
+  gulp.src("./")
+  .pipe(webserver({
+    livereload: true,
+  }));
+});
+
+
 gulp.task("watch", function() {
   gulp.watch("./styles.scss", ["sass"]);
 });
