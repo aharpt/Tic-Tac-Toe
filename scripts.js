@@ -16,13 +16,14 @@ class Board {
     i++;
     const spaceNumber = "<div class='space'></div>";
     $(".outer-space-container").append(spaceNumber)
-    $(spaceNumber).attr("id", "space-1");
+    // $(spaceNumber).attr("id", "space-1");
   }
 };
 
 var board = new Board();
 var piece1 = board.createPiece();
 var piece2 = board.createPiece();
+var piece3 = board.createPiece();
 
 
 // old code
