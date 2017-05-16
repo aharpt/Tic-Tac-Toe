@@ -3,14 +3,29 @@
 // board
 // pieces
 
+// class RandomNumber {
+//   randomNumber(highNumber) {
+//
+//   }
+// };
+
+var i = 0;
+
 class Board {
-  board() {
-    $(this).append("<div id='space-1' class='space'></div>");
+  createPiece() {
+    i++;
+    const spaceNumber = "<div class='space'></div>";
+    $(".outer-space-container").append(spaceNumber)
+    $(spaceNumber).attr("id", "space-1");
   }
-}
+};
+
+var board = new Board();
+var piece1 = board.createPiece();
+var piece2 = board.createPiece();
 
 
-
+// old code
 
 
 class RandomNumber {
