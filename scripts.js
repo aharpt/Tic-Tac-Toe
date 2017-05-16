@@ -1,20 +1,49 @@
-// create random number function to decide who starts the game
-var randomNumber = function() {
-  return Math.floor(Math.random() * 2) + 1;
+// nouns of project
+
+// board
+// pieces
+
+class Board {
+  board() {
+    $(this).append("<div id='space-1' class='space'></div>");
+  }
 }
 
-var randomNumberHolder = randomNumber();
+
+
+
+
+class RandomNumber {
+  randomNumber() {
+    return Math.floor(Math.random() * 2) + 1;
+  }
+};
+
+const $faOpera = $(".fa-opera");
+const $faTimes = $(".fa-times");
+const $fa = $(".fa");
+const classHighlight = "highlight";
+const $xContainer = $(".x-container");
+const $oContainer = $(".o-container");
+const $faOperaNotSelected = $(".fa-opera.not-selected");
+const $faTimesNotSelected = $(".fa-times.not-selected");
+
+
+const newRandomNumber = new RandomNumber();
+const randomNumberHolder = newRandomNumber.randomNumber();
+
+
 
 // decides who goes first, appends appropriate message, and changes appropriate elements html
 switch (randomNumberHolder) {
   case 1:
     document.querySelector(".decision-container").innerHTML = "<p>X's go first</p>";
-    $(".fa-opera").addClass("disabled");
+    $faOpera.addClass("disabled");
     break;
 
   case 2:
     document.querySelector(".decision-container").innerHTML = "<p>O's go first</p>";
-    $(".fa-times").addClass("disabled");
+    $faTimes.addClass("disabled");
     break;
 }
 
@@ -22,12 +51,12 @@ switch (randomNumberHolder) {
 
 $(function() {
 
-  $(".fa").click(function() {
-    $(this).addClass("highlight");
+  $fa.click(function() {
+    $(this).addClass(classHighlight);
   });
 
   $(".space").click(function() {
-    if ($(".not-selected").hasClass("highlight")) {
+    if ($(".not-selected").hasClass(classHighlight)) {
       // this .fa
         console.log(this);
         var pieceUsed = $(".not-selected.highlight").removeClass("not-selected").get();
@@ -42,26 +71,29 @@ $(function() {
 });
 
 
-$(".fa").click(function() {
+$fa.click(function() {
 
-  if ($(".x-container").children().length > $(".o-container").children().length) {
+  if ($xContainer.children().length > $oContainer.children().length) {
     console.log("log");
     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $(".fa-times").removeClass("disabled");
-    $(".fa-opera").addClass("disabled");
-  } else if ($(".o-container").children().length > $(".x-container").children().length) {
+    $faTimes.removeClass("disabled");
+    $faOpera.addClass("disabled");
+
+  } else if ($oContainer.children().length > $xContainer.children().length) {
     console.log("log");
     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $(".fa-opera").removeClass("disabled");
-    $(".fa-times").addClass("disabled");
-  } else if ($(".o-container").children().length === $(".x-container").children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
+    $faOpera.removeClass("disabled");
+    $faTimes.addClass("disabled");
+
+  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $(".fa-opera.not-selected").addClass("disabled");
-    $(".fa-times.not-selected").removeClass("disabled");
-  } else if ($(".o-container").children().length === $(".x-container").children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
+    $faOperaNotSelected.addClass("disabled");
+    $faTimesNotSelected.removeClass("disabled");
+
+  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $(".fa-times.not-selected").addClass("disabled");
-    $(".fa-opera.not-selected").removeClass("disabled");
+    $faTimesNotSelected.addClass("disabled");
+    $faOperaNotSelected.removeClass("disabled");
   }
 
 

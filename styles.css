@@ -1,5 +1,7 @@
 .outer-space-container {
-  width: 156px; }
+  width: 156px;
+  display: flex;
+  flex-direction: column; }
 
 .space-container {
   display: flex;
@@ -17,8 +19,15 @@
   margin: auto;
   color: rgba(0, 0, 0, 0.65); }
 
+.o-container {
+  margin: auto; }
+
 .x-container {
-  display: flex; }
+  display: flex;
+  margin: auto; }
+
+.decision-container {
+  margin: auto; }
 
 .highlight {
   color: red; }
