@@ -3,14 +3,42 @@
 // board
 // pieces
 
+// class RandomNumber {
+//   randomNumber(highNumber) {
+//
+//   }
+// };
+
+var i = 0;
+
 class Board {
-  board() {
-    $(this).append("<div id='space-1' class='space'></div>");
+  createPiece(pieceContainer) {
+    i++;
+    const spaceNumber = "<div class='space'></div>";
+    const container = pieceContainer;
+    $(container).append(spaceNumber)
+    // $(spaceNumber).attr("id", "space-1");
   }
-}
+};
+
+var board = new Board();
+
+board.createPiece($(".outer-space-container"));
+board.createPiece($(".outer-space-container"));
+board.createPiece($(".outer-space-container"));
+$("body").append("<div id='outer-space-container-2' class='outer-space-container'></div>");
+
+board.createPiece($("#outer-space-container-2"));
+board.createPiece($("#outer-space-container-2"));
+board.createPiece($("#outer-space-container-2"));
+
+$("body").append("<div id='outer-space-container-3' class='outer-space-container'></div>");
+board.createPiece($("#outer-space-container-3"));
+board.createPiece($("#outer-space-container-3"));
+board.createPiece($("#outer-space-container-3"));
 
 
-
+// old code
 
 
 class RandomNumber {
