@@ -12,18 +12,30 @@
 var i = 0;
 
 class Board {
-  createPiece() {
+  createPiece(pieceContainer) {
     i++;
     const spaceNumber = "<div class='space'></div>";
-    $(".outer-space-container").append(spaceNumber)
+    const container = pieceContainer;
+    $(container).append(spaceNumber)
     // $(spaceNumber).attr("id", "space-1");
   }
 };
 
 var board = new Board();
-var piece1 = board.createPiece();
-var piece2 = board.createPiece();
-var piece3 = board.createPiece();
+
+board.createPiece($(".outer-space-container"));
+board.createPiece($(".outer-space-container"));
+board.createPiece($(".outer-space-container"));
+$("body").append("<div id='outer-space-container-2' class='outer-space-container'></div>");
+
+board.createPiece($("#outer-space-container-2"));
+board.createPiece($("#outer-space-container-2"));
+board.createPiece($("#outer-space-container-2"));
+
+$("body").append("<div id='outer-space-container-3' class='outer-space-container'></div>");
+board.createPiece($("#outer-space-container-3"));
+board.createPiece($("#outer-space-container-3"));
+board.createPiece($("#outer-space-container-3"));
 
 
 // old code
