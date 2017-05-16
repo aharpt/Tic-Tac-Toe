@@ -3,6 +3,16 @@
 // board
 // pieces
 
+class Board {
+  board() {
+    $(this).append("<div id='space-1' class='space'></div>");
+  }
+}
+
+
+
+
+
 class RandomNumber {
   randomNumber() {
     return Math.floor(Math.random() * 2) + 1;
