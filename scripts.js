@@ -9,11 +9,10 @@
 //   }
 // };
 
-var i = 0;
+
 
 class Board {
-  createPiece(pieceContainer) {
-    i++;
+  createBoardPiece(pieceContainer) {
     const spaceNumber = "<div class='space'></div>";
     const container = pieceContainer;
     $(container).append(spaceNumber)
@@ -23,19 +22,46 @@ class Board {
 
 var board = new Board();
 
-board.createPiece($(".outer-space-container"));
-board.createPiece($(".outer-space-container"));
-board.createPiece($(".outer-space-container"));
+board.createBoardPiece($(".outer-space-container"));
+board.createBoardPiece($(".outer-space-container"));
+board.createBoardPiece($(".outer-space-container"));
 $("body").append("<div id='outer-space-container-2' class='outer-space-container'></div>");
 
-board.createPiece($("#outer-space-container-2"));
-board.createPiece($("#outer-space-container-2"));
-board.createPiece($("#outer-space-container-2"));
+board.createBoardPiece($("#outer-space-container-2"));
+board.createBoardPiece($("#outer-space-container-2"));
+board.createBoardPiece($("#outer-space-container-2"));
 
 $("body").append("<div id='outer-space-container-3' class='outer-space-container'></div>");
-board.createPiece($("#outer-space-container-3"));
-board.createPiece($("#outer-space-container-3"));
-board.createPiece($("#outer-space-container-3"));
+board.createBoardPiece($("#outer-space-container-3"));
+board.createBoardPiece($("#outer-space-container-3"));
+board.createBoardPiece($("#outer-space-container-3"));
+
+class Piece {
+  createPiece(pieceTypeClass, container) {
+    if (pieceTypeClass === "X's") {
+      $(container).append("<i class='fa fa-times fa-3x' aria-hidden='true'></i>");
+    } else if (pieceTypeClass === "O's") {
+      $(container).append("<i class='fa fa-opera fa-3x' aria-hidden='true'></i>");
+    }
+  }
+};
+
+const piece = new Piece();
+
+$("body").append("<div class='x-pieces-container'></div>");
+$("body").append("<div class='o-pieces-container'></div>");
+
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
 
 
 // old code
