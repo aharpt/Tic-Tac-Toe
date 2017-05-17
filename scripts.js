@@ -16,7 +16,6 @@ class Board {
     const spaceNumber = "<div class='space'></div>";
     const container = pieceContainer;
     $(container).append(spaceNumber)
-    // $(spaceNumber).attr("id", "space-1");
   }
 };
 
