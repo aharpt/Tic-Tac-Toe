@@ -20,7 +20,7 @@ class Board {
   }
 };
 
-var board = new Board();
+const board = new Board();
 
 board.createBoardPiece($(".outer-space-container"));
 board.createBoardPiece($(".outer-space-container"));
