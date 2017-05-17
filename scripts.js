@@ -54,11 +54,6 @@ class Piece {
     } else {
       faClicked.addClass("disabled").removeClass("clicked");
     }
-
-  }
-
-  placePiece() {
-    
   }
 
 };
