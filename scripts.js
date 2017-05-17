@@ -36,6 +36,9 @@ board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 
+
+var faClicked;
+
 class Piece {
   createPiece(pieceTypeClass, container) {
     if (pieceTypeClass === "X's") {
@@ -44,6 +47,11 @@ class Piece {
       $(container).append("<i class='fa fa-opera fa-3x' aria-hidden='true'></i>");
     }
   }
+
+  clickPiece() {
+    faClicked.toggleClass("clicked");
+  }
+
 };
 
 const piece = new Piece();
@@ -62,6 +70,12 @@ piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
+
+
+$(".fa").click(function() {
+  faClicked = $(this);
+  piece.clickPiece();
+});
 
 
 // old code
@@ -88,80 +102,80 @@ const randomNumberHolder = newRandomNumber.randomNumber();
 
 
 
-// decides who goes first, appends appropriate message, and changes appropriate elements html
-switch (randomNumberHolder) {
-  case 1:
-    document.querySelector(".decision-container").innerHTML = "<p>X's go first</p>";
-    $faOpera.addClass("disabled");
-    break;
-
-  case 2:
-    document.querySelector(".decision-container").innerHTML = "<p>O's go first</p>";
-    $faTimes.addClass("disabled");
-    break;
-}
-
-// jquery
-
-$(function() {
-
-  $fa.click(function() {
-    $(this).addClass(classHighlight);
-  });
-
-  $(".space").click(function() {
-    if ($(".not-selected").hasClass(classHighlight)) {
-      // this .fa
-        console.log(this);
-        var pieceUsed = $(".not-selected.highlight").removeClass("not-selected").get();
-
-        $(this).html(pieceUsed);
-        $(this).off("click");
-    }
-  });
-
-  $(".space .fa").off("click").parent(".space").off("click");
-
-});
-
-
-$fa.click(function() {
-
-  if ($xContainer.children().length > $oContainer.children().length) {
-    console.log("log");
-    document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $faTimes.removeClass("disabled");
-    $faOpera.addClass("disabled");
-
-  } else if ($oContainer.children().length > $xContainer.children().length) {
-    console.log("log");
-    document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $faOpera.removeClass("disabled");
-    $faTimes.addClass("disabled");
-
-  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
-    document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $faOperaNotSelected.addClass("disabled");
-    $faTimesNotSelected.removeClass("disabled");
-
-  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
-    document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $faTimesNotSelected.addClass("disabled");
-    $faOperaNotSelected.removeClass("disabled");
-  }
-
-
-
-
-});
-
-
-
-// figure out if someone wins the game
-
-/* if (space1 && space2 && space3 === x) {
-  x wins
-}
-
-*/
-// display result when the end of the game occurs
+// // decides who goes first, appends appropriate message, and changes appropriate elements html
+// switch (randomNumberHolder) {
+//   case 1:
+//     document.querySelector(".decision-container").innerHTML = "<p>X's go first</p>";
+//     $faOpera.addClass("disabled");
+//     break;
+//
+//   case 2:
+//     document.querySelector(".decision-container").innerHTML = "<p>O's go first</p>";
+//     $faTimes.addClass("disabled");
+//     break;
+// }
+//
+// // jquery
+//
+// $(function() {
+//
+//   $fa.click(function() {
+//     $(this).addClass(classHighlight);
+//   });
+//
+//   $(".space").click(function() {
+//     if ($(".not-selected").hasClass(classHighlight)) {
+//       // this .fa
+//         console.log(this);
+//         var pieceUsed = $(".not-selected.highlight").removeClass("not-selected").get();
+//
+//         $(this).html(pieceUsed);
+//         $(this).off("click");
+//     }
+//   });
+//
+//   $(".space .fa").off("click").parent(".space").off("click");
+//
+// });
+//
+//
+// $fa.click(function() {
+//
+//   if ($xContainer.children().length > $oContainer.children().length) {
+//     console.log("log");
+//     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
+//     $faTimes.removeClass("disabled");
+//     $faOpera.addClass("disabled");
+//
+//   } else if ($oContainer.children().length > $xContainer.children().length) {
+//     console.log("log");
+//     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
+//     $faOpera.removeClass("disabled");
+//     $faTimes.addClass("disabled");
+//
+//   } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
+//     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
+//     $faOperaNotSelected.addClass("disabled");
+//     $faTimesNotSelected.removeClass("disabled");
+//
+//   } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
+//     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
+//     $faTimesNotSelected.addClass("disabled");
+//     $faOperaNotSelected.removeClass("disabled");
+//   }
+//
+//
+//
+//
+// });
+//
+//
+//
+// // figure out if someone wins the game
+//
+// /* if (space1 && space2 && space3 === x) {
+//   x wins
+// }
+//
+// */
+// // display result when the end of the game occurs
