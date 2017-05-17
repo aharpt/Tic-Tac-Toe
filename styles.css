@@ -8,3 +8,6 @@
 
 .clicked {
   color: red; }
+
+.disabled {
+  color: rgba(0, 0, 0, 0.5); }

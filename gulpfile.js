@@ -15,9 +15,9 @@ gulp.task("webserver", function() {
   }));
 });
 
-
+// watch task http://stackoverflow.com/questions/27645103/how-to-gulp-watch-multiple-files
 gulp.task("watch", function() {
-  gulp.watch("./styles.scss", ["sass"]);
+  gulp.watch("./**/*.scss", ["sass"]);
 });
 
 gulp.task("default", ["watch", "webserver"]);

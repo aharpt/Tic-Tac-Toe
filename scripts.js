@@ -42,14 +42,23 @@ var faClicked;
 class Piece {
   createPiece(pieceTypeClass, container) {
     if (pieceTypeClass === "X's") {
-      $(container).append("<i class='fa fa-times fa-3x' aria-hidden='true'></i>");
+      $(container).append("<i class='fa fa-times fa-3x disabled' aria-hidden='true'></i>");
     } else if (pieceTypeClass === "O's") {
-      $(container).append("<i class='fa fa-opera fa-3x' aria-hidden='true'></i>");
+      $(container).append("<i class='fa fa-opera fa-3x disabled' aria-hidden='true'></i>");
     }
   }
 
   clickPiece() {
-    faClicked.toggleClass("clicked");
+    if (!$(".fa").hasClass("clicked")) {
+      faClicked.removeClass("disabled").addClass("clicked");
+    } else {
+      faClicked.addClass("disabled").removeClass("clicked");
+    }
+
+  }
+
+  placePiece() {
+    
   }
 
 };
