@@ -47,12 +47,12 @@ class Piece {
     }
   }
 
-  clickPiece() {
-    if (!$(".fa").hasClass("clicked")) {
-      faClicked.removeClass("disabled").addClass("clicked");
-    } else {
-      faClicked.addClass("disabled").removeClass("clicked");
-    }
+  movePiece() {
+    faClicked.removeClass("disabled").addClass("clicked");
+    faClicked.draggable({
+      grid: [1, 1]
+    });
+    console.log("World");
   }
 
 };
@@ -75,9 +75,32 @@ piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 
 
+$(".fa").on("drag", function() {
+  console.log("World");
+  faClicked = $(this);
+  piece.movePiece();
+});
+
+// $(".fa").click(function() {
+//   console.log("World 2");
+//   faClicked = $(this);
+//   piece.movePiece();
+// });
+//
+// $(".fa").on("dragstart", function() {
+//   // faClicked = $(this);
+//   $(".fa").removeClass("clicked").addClass("disabled");
+//   console.log("World 3");
+// });
+
 $(".fa").click(function() {
   faClicked = $(this);
-  piece.clickPiece();
+  $(this).addClass("clicked").removeClass("disabled");
+});
+
+$(".space").click(function() {
+  $(this).html(faClicked);
+  faClicked.removeClass("clicked").addClass("disabled");
 });
 
 
