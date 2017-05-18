@@ -10,7 +10,7 @@
 // };
 
 
-
+// board class
 class Board {
   createBoardPiece(pieceContainer) {
     const spaceNumber = "<div class='space'></div>";
@@ -19,8 +19,10 @@ class Board {
   }
 };
 
+// new instance of Board class
 const board = new Board();
 
+// creates board pieces and appends them to correct containers
 board.createBoardPiece($(".outer-space-container"));
 board.createBoardPiece($(".outer-space-container"));
 board.createBoardPiece($(".outer-space-container"));
@@ -35,18 +37,20 @@ board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 
-
+// holds the last clicked piece, if applicable
 var faClicked;
 
+// Piece class
 class Piece {
-  createPiece(pieceTypeClass, container) {
-    if (pieceTypeClass === "X's") {
+  createPiece(pieceType, container) {
+    if (pieceType === "X's") {
       $(container).append("<i class='fa fa-times fa-3x disabled' aria-hidden='true'></i>");
-    } else if (pieceTypeClass === "O's") {
+    } else if (pieceType === "O's") {
       $(container).append("<i class='fa fa-opera fa-3x disabled' aria-hidden='true'></i>");
     }
   }
 
+  // moves piece
   movePiece() {
     faClicked.removeClass("disabled").addClass("clicked");
     faClicked.draggable({
@@ -57,11 +61,16 @@ class Piece {
 
 };
 
+// holds new instance of Piece class
 const piece = new Piece();
+
+// appends piece container
 
 $("body").append("<div class='x-pieces-container'></div>");
 $("body").append("<div class='o-pieces-container'></div>");
 
+// creates pieces
+
 piece.createPiece("X's", ".x-pieces-container");
 piece.createPiece("X's", ".x-pieces-container");
 piece.createPiece("X's", ".x-pieces-container");
@@ -75,11 +84,11 @@ piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 
 
-$(".fa").on("drag", function() {
-  console.log("World");
-  faClicked = $(this);
-  piece.movePiece();
-});
+// $(".fa").on("drag", function() {
+//   console.log("World");
+//   faClicked = $(this);
+//   piece.movePiece();
+// });
 
 // $(".fa").click(function() {
 //   console.log("World 2");
@@ -93,10 +102,14 @@ $(".fa").on("drag", function() {
 //   console.log("World 3");
 // });
 
+// holds the currently clicked piece and adds class clicked and removes class disabled
+
 $(".fa").click(function() {
   faClicked = $(this);
   $(this).addClass("clicked").removeClass("disabled");
 });
+
+// adds the currently selected piece to the clicked space
 
 $(".space").click(function() {
   $(this).html(faClicked);
