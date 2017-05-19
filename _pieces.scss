@@ -2,6 +2,15 @@
   color: #DEB887;
 }
 
-.disabled {
+.fa.disabled {
   color: rgba(0, 0, 0, .5);
+
+  &:hover {
+    cursor: auto;
+  }
+
+}
+
+.fa:hover {
+  cursor: pointer;
 }

@@ -9,6 +9,22 @@
 //   }
 // };
 
+// holds the current side up, X's or O's
+var currentSideUp;
+// holds the last clicked piece, if applicable
+var faClicked;
+// holds first side up
+var firstSideUp;
+// number of pieces placed
+var numOfPiecesPlaced = 0;
+
+class RandomNumber {
+  randomNumber(highNumber) {
+    return Math.floor(Math.random() * highNumber);
+  }
+};
+
+const randomNumber = new RandomNumber();
 
 // board class
 class Board {
@@ -37,8 +53,6 @@ board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 
-// holds the last clicked piece, if applicable
-var faClicked;
 
 // Piece class
 class Piece {
@@ -107,6 +121,7 @@ piece.createPiece("O's", ".o-pieces-container");
 $(".fa").click(function() {
   faClicked = $(this);
   $(this).addClass("clicked").removeClass("disabled");
+  numOfPiecesPlaced++;
 });
 
 // adds the currently selected piece to the clicked space
@@ -116,15 +131,76 @@ $(".space").click(function() {
   faClicked.removeClass("clicked").addClass("disabled");
 });
 
+class FirstTurn {
+  firstTurn() {
+    const decideFirstTurn = randomNumber.randomNumber(2);
+
+    if (decideFirstTurn === 0) {
+      firstSideUp = "X's";
+      alert("X's turn");
+      $(".x-pieces-container .fa").removeClass("disabled");
+      currentSideUp = "X's";
+    } else if (decideFirstTurn === 1) {
+      firstSideUp = "O's";
+      alert("O's turn")
+      $(".o-pieces-container .fa").removeClass("disabled");
+      currentSideUp = "O's";
+    }
+  }
+
+  currentSideUp() {
+    if (currentSideUp === "X's" && $(".x-pieces-container .fa").length < $(".o-pieces-container .fa").length) {
+      currentSideUp = "O's";
+      $(".x-pieces-container .fa").addClass("disabled");
+      $(".o-pieces-container .fa").removeClass("disabled");
+    } else if (currentSideUp === "O's" && $(".o-pieces-container .fa").length < $(".x-pieces-container .fa").length) {
+      currentSideUp = "X's";
+      $(".o-pieces-container .fa").addClass("disabled");
+      $(".x-pieces-container .fa").removeClass("disabled");
+    } else if ($(".x-pieces-container .fa").length === $(".o-pieces-container .fa").length) {
+      if (firstSideUp === "X's") {
+        $(".x-pieces-container .fa").addClass("disabled");
+        $(".o-pieces-container .fa").removeClass("disabled");
+      } else if (firstSideUp === "O's") {
+        $(".o-pieces-container .fa").addClass("disabled");
+        $(".x-pieces-container .fa").removeClass("disabled");
+      }
+    }
+
+    // alert("World");
+  }
+
+};
+
+const firstTurn = new FirstTurn();
+
+firstTurn.firstTurn();
+
+$(".disabled").click(function() {
+  $(this).addClass("disabled").removeClass("clicked");
+});
+
+// $(".space .disabled").click(function() {
+//   firstTurn.currentSideUp();
+// });
+
+
+
+setInterval(function() {
+  if (numOfPiecesPlaced > 0) {
+    firstTurn.currentSideUp();
+  }
+}, 1000);
+
 
 // old code
 
 
-class RandomNumber {
-  randomNumber() {
-    return Math.floor(Math.random() * 2) + 1;
-  }
-};
+// class RandomNumber {
+//   randomNumber() {
+//     return Math.floor(Math.random() * 2) + 1;
+//   }
+// };
 
 const $faOpera = $(".fa-opera");
 const $faTimes = $(".fa-times");

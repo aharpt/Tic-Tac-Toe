@@ -9,5 +9,10 @@
 .clicked {
   color: #DEB887; }
 
-.disabled {
+.fa.disabled {
   color: rgba(0, 0, 0, 0.5); }
+  .fa.disabled:hover {
+    cursor: auto; }
+
+.fa:hover {
+  cursor: pointer; }
