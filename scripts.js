@@ -17,6 +17,8 @@ var faClicked;
 var firstSideUp;
 // number of pieces placed
 var numOfPiecesPlaced = 0;
+// holds winner, if applicable
+var winner;
 
 class RandomNumber {
   randomNumber(highNumber) {
@@ -161,6 +163,31 @@ $(".disabled").click(function() {
 
 // adds the currently selected piece to the clicked space
 
+
+
+class DecideWinner {
+  decideWinner() {
+    // ways someone could win
+    if ($("#outer-space-container-1").children().children(".fa-opera").length === 3 || $("#outer-space-container-2").children().children(".fa-opera").length === 3 || $("#outer-space-container-3").children().children(".fa-opera").length === 3) {
+
+      var winnerInterval = function() {
+        alert("O's win");
+      };
+
+      // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+      var winnerSetInterval = setInterval(winnerInterval, 250);
+      setInterval(function() {
+        clearInterval(winnerSetInterval);
+      }, 250);
+
+    }
+  }
+};
+
+
+const Winner = new DecideWinner();
+
+
 $(".space").click(function() {
   if (faClicked !== "") {
     $(this).html(faClicked);
@@ -168,9 +195,12 @@ $(".space").click(function() {
   $(this).children(".fa").off("click");
   faClicked.removeClass("clicked").addClass("disabled");
   // numOfPiecesPlaced++;
+
+
+    Winner.decideWinner();
+
   firstTurn.currentSideUp();
 });
-
 
 
 
