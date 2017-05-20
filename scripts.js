@@ -118,18 +118,11 @@ piece.createPiece("O's", ".o-pieces-container");
 
 // holds the currently clicked piece and adds class clicked and removes class disabled
 
-$(".fa").click(function() {
+$(".x-pieces-container .fa, .o-pieces-container .fa").click(function() {
   faClicked = $(this);
   $(this).addClass("clicked").removeClass("disabled");
-  numOfPiecesPlaced++;
 });
 
-// adds the currently selected piece to the clicked space
-
-$(".space").click(function() {
-  $(this).html(faClicked);
-  faClicked.removeClass("clicked").addClass("disabled");
-});
 
 class FirstTurn {
   firstTurn() {
@@ -149,25 +142,39 @@ class FirstTurn {
   }
 
   currentSideUp() {
-    if (currentSideUp === "X's" && $(".x-pieces-container .fa").length < $(".o-pieces-container .fa").length) {
+    faClicked = "";
+    if ($(".x-pieces-container .fa").length < $(".o-pieces-container .fa").length) {
       currentSideUp = "O's";
       $(".x-pieces-container .fa").addClass("disabled");
       $(".o-pieces-container .fa").removeClass("disabled");
-    } else if (currentSideUp === "O's" && $(".o-pieces-container .fa").length < $(".x-pieces-container .fa").length) {
+
+      $(".fa:not(.disabled)").click(function(){
+        $(this).addClass("clicked").removeClass("disabled");
+      });
+
+      console.log("X current side");
+
+    } else if ($(".o-pieces-container .fa").length < $(".x-pieces-container .fa").length) {
       currentSideUp = "X's";
       $(".o-pieces-container .fa").addClass("disabled");
       $(".x-pieces-container .fa").removeClass("disabled");
-    } else if ($(".x-pieces-container .fa").length === $(".o-pieces-container .fa").length) {
-      if (firstSideUp === "X's") {
-        $(".x-pieces-container .fa").addClass("disabled");
-        $(".o-pieces-container .fa").removeClass("disabled");
-      } else if (firstSideUp === "O's") {
-        $(".o-pieces-container .fa").addClass("disabled");
-        $(".x-pieces-container .fa").removeClass("disabled");
-      }
-    }
 
-    // alert("World");
+      $(".fa:not(.disabled)").click(function(){
+        $(this).addClass("clicked").removeClass("disabled");
+      });
+
+      console.log("O current side");
+    } else {
+      if (firstSideUp === "X's") {
+        $(".x-pieces-container .fa").removeClass("disabled");
+        $(".o-pieces-container .fa").addClass("disabled");
+      } else if (firstSideUp === "O's") {
+        $(".o-pieces-container .fa").removeClass("disabled");
+        $(".x-pieces-container .fa").addClass("disabled");
+      }
+
+      console.log("first side up is: " + firstSideUp);
+    }
   }
 
 };
@@ -180,17 +187,22 @@ $(".disabled").click(function() {
   $(this).addClass("disabled").removeClass("clicked");
 });
 
-// $(".space .disabled").click(function() {
-//   firstTurn.currentSideUp();
-// });
+// adds the currently selected piece to the clicked space
 
-
-
-setInterval(function() {
-  if (numOfPiecesPlaced > 0) {
-    firstTurn.currentSideUp();
+$(".space").click(function() {
+  if (faClicked !== "") {
+    $(this).html(faClicked);
   }
-}, 1000);
+  $(this).children(".fa").off("click");
+  faClicked.removeClass("clicked").addClass("disabled");
+  // numOfPiecesPlaced++;
+  firstTurn.currentSideUp();
+});
+
+
+
+
+
 
 
 // old code
