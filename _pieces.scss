@@ -1,0 +1,23 @@
+.clicked {
+  color: #DEB887;
+}
+
+.fa.disabled {
+  color: rgba(0, 0, 0, .5);
+
+  &:hover {
+    cursor: not-allowed;
+    // http://stackoverflow.com/questions/17462682/set-element-to-unclickable-and-then-to-clickable
+    pointer-events: none;
+  }
+
+}
+
+.fa:hover {
+  cursor: pointer;
+}
+
+.space .fa {
+  // http://stackoverflow.com/questions/17462682/set-element-to-unclickable-and-then-to-clickable
+  pointer-events: none;
+}

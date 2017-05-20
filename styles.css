@@ -5,3 +5,18 @@
   border: 1px solid black;
   height: 50px;
   width: 50px; }
+
+.clicked {
+  color: #DEB887; }
+
+.fa.disabled {
+  color: rgba(0, 0, 0, 0.5); }
+  .fa.disabled:hover {
+    cursor: not-allowed;
+    pointer-events: none; }
+
+.fa:hover {
+  cursor: pointer; }
+
+.space .fa {
+  pointer-events: none; }
