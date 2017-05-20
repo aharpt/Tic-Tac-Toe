@@ -64,15 +64,6 @@ class Piece {
     }
   }
 
-  // moves piece
-  movePiece() {
-    faClicked.removeClass("disabled").addClass("clicked");
-    faClicked.draggable({
-      grid: [1, 1]
-    });
-    console.log("World");
-  }
-
 };
 
 // holds new instance of Piece class
@@ -96,25 +87,6 @@ piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
 piece.createPiece("O's", ".o-pieces-container");
-
-
-// $(".fa").on("drag", function() {
-//   console.log("World");
-//   faClicked = $(this);
-//   piece.movePiece();
-// });
-
-// $(".fa").click(function() {
-//   console.log("World 2");
-//   faClicked = $(this);
-//   piece.movePiece();
-// });
-//
-// $(".fa").on("dragstart", function() {
-//   // faClicked = $(this);
-//   $(".fa").removeClass("clicked").addClass("disabled");
-//   console.log("World 3");
-// });
 
 // holds the currently clicked piece and adds class clicked and removes class disabled
 
