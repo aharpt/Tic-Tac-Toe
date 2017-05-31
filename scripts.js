@@ -95,9 +95,18 @@ piece.createPiece("O's", ".o-pieces-container");
 
 // holds the currently clicked piece and adds class clicked and removes class disabled
 
-$(".x-pieces-container .fa, .o-pieces-container .fa").click(function() {
+$(".x-pieces-container .fa").click(function() {
   faClicked = $(this);
-  $(this).addClass("clicked").removeClass("disabled");
+  if (!$(this).siblings().hasClass("clicked")) {
+    $(this).addClass("clicked").removeClass("disabled");
+  }
+});
+
+$(".o-pieces-container .fa").click(function() {
+  faClicked = $(this);
+  if (!$(this).siblings().hasClass("clicked")) {
+    $(this).addClass("clicked").removeClass("disabled");
+  }
 });
 
 
