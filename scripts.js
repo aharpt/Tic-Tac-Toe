@@ -245,7 +245,7 @@ class DecideWinner {
 
             } else if ($(".space").children(".fa").length === 9) {
               var winnerInterval = function() {
-                $("body").html("<p>Cat's game,</p><button>Play Again?</button>");
+                $("body").html("<p>Cat's game,</p><button id='play-again-button'>Play Again?</button>");
             };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
@@ -257,12 +257,15 @@ class DecideWinner {
             }
 
 
-
-
-
+            $("#play-again-button").hover(function() {
+              console.log("World");
+              // https://stackoverflow.com/questions/11658847/refresh-webpage-programmatically-javascript
+              window.location.reload();
+            });
 
   }
 };
+
 
 
 const Winner = new DecideWinner();
@@ -308,83 +311,3 @@ const $faTimesNotSelected = $(".fa-times.not-selected");
 
 const newRandomNumber = new RandomNumber();
 const randomNumberHolder = newRandomNumber.randomNumber();
-
-
-
-// // decides who goes first, appends appropriate message, and changes appropriate elements html
-// switch (randomNumberHolder) {
-//   case 1:
-//     document.querySelector(".decision-container").innerHTML = "<p>X's go first</p>";
-//     $faOpera.addClass("disabled");
-//     break;
-//
-//   case 2:
-//     document.querySelector(".decision-container").innerHTML = "<p>O's go first</p>";
-//     $faTimes.addClass("disabled");
-//     break;
-// }
-//
-// // jquery
-//
-// $(function() {
-//
-//   $fa.click(function() {
-//     $(this).addClass(classHighlight);
-//   });
-//
-//   $(".space").click(function() {
-//     if ($(".not-selected").hasClass(classHighlight)) {
-//       // this .fa
-//         console.log(this);
-//         var pieceUsed = $(".not-selected.highlight").removeClass("not-selected").get();
-//
-//         $(this).html(pieceUsed);
-//         $(this).off("click");
-//     }
-//   });
-//
-//   $(".space .fa").off("click").parent(".space").off("click");
-//
-// });
-//
-//
-// $fa.click(function() {
-//
-//   if ($xContainer.children().length > $oContainer.children().length) {
-//     console.log("log");
-//     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-//     $faTimes.removeClass("disabled");
-//     $faOpera.addClass("disabled");
-//
-//   } else if ($oContainer.children().length > $xContainer.children().length) {
-//     console.log("log");
-//     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-//     $faOpera.removeClass("disabled");
-//     $faTimes.addClass("disabled");
-//
-//   } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
-//     document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-//     $faOperaNotSelected.addClass("disabled");
-//     $faTimesNotSelected.removeClass("disabled");
-//
-//   } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
-//     document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-//     $faTimesNotSelected.addClass("disabled");
-//     $faOperaNotSelected.removeClass("disabled");
-//   }
-//
-//
-//
-//
-// });
-//
-//
-//
-// // figure out if someone wins the game
-//
-// /* if (space1 && space2 && space3 === x) {
-//   x wins
-// }
-//
-// */
-// // display result when the end of the game occurs
