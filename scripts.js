@@ -12,7 +12,7 @@
 // holds the current side up, X's or O's
 var currentSideUp;
 // holds the last clicked piece, if applicable
-var faClicked;
+var faClicked = $(this);
 // holds first side up
 var firstSideUp;
 // number of pieces placed
@@ -95,19 +95,27 @@ piece.createPiece("O's", ".o-pieces-container");
 
 // holds the currently clicked piece and adds class clicked and removes class disabled
 
-$(".x-pieces-container .fa").click(function() {
+$(".x-pieces-container .fa").on("click", function() {
+
+  $(".o-pieces-container .fa").removeClass("disabled-siblings");
+
   faClicked = $(this);
-  if (!$(this).siblings().hasClass("clicked")) {
-    $(this).addClass("clicked").removeClass("disabled");
+  if (!faClicked.siblings().hasClass("clicked")) {
+    $(this).siblings().addClass("disabled-siblings");
+    faClicked.addClass("clicked").removeClass("disabled");
   }
 });
 
-$(".o-pieces-container .fa").click(function() {
+$(".o-pieces-container .fa").on("click", function() {
+  $(".x-pieces-container .fa").removeClass("disabled-siblings");
   faClicked = $(this);
-  if (!$(this).siblings().hasClass("clicked")) {
-    $(this).addClass("clicked").removeClass("disabled");
+  if (!faClicked.siblings().hasClass("clicked")) {
+    $(this).siblings().addClass("disabled-siblings");
+    faClicked.addClass("clicked").removeClass("disabled");
   }
 });
+
+
 
 
 class FirstTurn {

@@ -13,6 +13,12 @@
 
 }
 
+.fa.disabled-siblings {
+  cursor: not-allowed;
+  // http://stackoverflow.com/questions/17462682/set-element-to-unclickable-and-then-to-clickable
+  pointer-events: none;
+}
+
 .fa:hover {
   cursor: pointer;
 }

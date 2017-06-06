@@ -15,6 +15,10 @@
     cursor: not-allowed;
     pointer-events: none; }
 
+.fa.disabled-siblings {
+  cursor: not-allowed;
+  pointer-events: none; }
+
 .fa:hover {
   cursor: pointer; }
 
