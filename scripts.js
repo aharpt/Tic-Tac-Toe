@@ -202,85 +202,93 @@ class DecideWinner {
     if ($("#outer-space-container-1").children().children(".fa-opera").length === 3 || $("#outer-space-container-2").children().children(".fa-opera").length === 3 || $("#outer-space-container-3").children().children(".fa-opera").length === 3) {
 
       var winnerInterval = function() {
-        alert("O's win");
+        // alert("O's win");
+        $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+        $(".fa").addClass("disabled");
       };
 
       // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-      var winnerSetInterval = setInterval(winnerInterval, 250);
+      var winnerSetInterval = setInterval(winnerInterval, 500);
       setInterval(function() {
         clearInterval(winnerSetInterval);
-      }, 250);
+      }, 500);
 
     } else if ($("#space-1").children(".fa-opera").length > 0 && $("#space-4").children(".fa-opera").length > 0 && $("#space-7").children(".fa-opera").length > 0 || $("#space-2").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-8").children(".fa-opera").length > 0 || $("#space-3").children(".fa-opera").length > 0 && $("#space-6").children(".fa-opera").length > 0 && $("#space-9").children(".fa-opera").length > 0) {
           console.log("console.log");
           var winnerInterval = function() {
-            alert("O's win");
+            $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+            $(".fa").addClass("disabled");
           };
 
           // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-          var winnerSetInterval = setInterval(winnerInterval, 250);
+          var winnerSetInterval = setInterval(winnerInterval, 500);
           setInterval(function() {
             clearInterval(winnerSetInterval);
-          }, 250);
+          }, 500);
 
         } else if ($("#space-1").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-9").children(".fa-opera").length > 0 || $("#space-3").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-7").children(".fa-opera").length > 0) {
               console.log("console.log");
               var winnerInterval = function() {
-                alert("O's win");
+                $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
               };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-              var winnerSetInterval = setInterval(winnerInterval, 250);
+              var winnerSetInterval = setInterval(winnerInterval, 500);
               setInterval(function() {
                 clearInterval(winnerSetInterval);
-              }, 250);
+              }, 500);
 
             } else if ($("#outer-space-container-1").children().children(".fa-times").length === 3 || $("#outer-space-container-2").children().children(".fa-times").length === 3 || $("#outer-space-container-3").children().children(".fa-times").length === 3) {
 
               var winnerInterval = function() {
-                alert("X's win");
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
               };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-              var winnerSetInterval = setInterval(winnerInterval, 250);
+              var winnerSetInterval = setInterval(winnerInterval, 500);
               setInterval(function() {
                 clearInterval(winnerSetInterval);
-              }, 250);
+              }, 500);
 
             } else if ($("#space-1").children(".fa-times").length > 0 && $("#space-4").children(".fa-times").length > 0 && $("#space-7").children(".fa-times").length > 0 || $("#space-2").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-8").children(".fa-times").length > 0 || $("#space-3").children(".fa-times").length > 0 && $("#space-6").children(".fa-times").length > 0 && $("#space-9").children(".fa-times").length > 0) {
               console.log("console.log");
               var winnerInterval = function() {
-                alert("X's win");
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
               };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-              var winnerSetInterval = setInterval(winnerInterval, 250);
+              var winnerSetInterval = setInterval(winnerInterval, 500);
               setInterval(function() {
                 clearInterval(winnerSetInterval);
-              }, 250);
+              }, 500);
 
             } else if ($("#space-1").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-9").children(".fa-times").length > 0 || $("#space-3").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-7").children(".fa-times").length > 0) {
               console.log("console.log");
               var winnerInterval = function() {
-                alert("O's win");
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
             };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-              var winnerSetInterval = setInterval(winnerInterval, 250);
+              var winnerSetInterval = setInterval(winnerInterval, 500);
               setInterval(function() {
                 clearInterval(winnerSetInterval);
-              }, 250);
+              }, 500);
 
             } else if ($(".space").children(".fa").length === 9) {
               var winnerInterval = function() {
-                $("body").html("<p>Cat's game,</p><button id='play-again-button'>Play Again?</button>");
+                $("body").append("<h3>Cat's game. Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
             };
 
               // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
-              var winnerSetInterval = setInterval(winnerInterval, 250);
+              var winnerSetInterval = setInterval(winnerInterval, 500);
               setInterval(function() {
                 clearInterval(winnerSetInterval);
-              }, 250);
+              }, 500);
 
             }
 
