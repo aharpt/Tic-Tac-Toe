@@ -1,36 +1,29 @@
 .outer-space-container {
-  width: 156px;
-  display: flex;
-  flex-direction: column; }
-
-.space-container {
-  display: flex;
-  flex-direction: row;
-  width: 155px; }
+  display: flex; }
 
 .space {
   border: 1px solid black;
   height: 50px;
-  width: 50px;
-  display: flex;
-  flex-direction: column; }
+  width: 50px; }
 
-.space i {
-  margin: auto;
-  color: rgba(0, 0, 0, 0.65); }
+.active {
+  cursor: pointer; }
 
-.o-container {
-  margin: auto; }
+.clicked {
+  color: #DEB887; }
 
-.x-container {
-  display: flex;
-  margin: auto; }
+.fa.disabled {
+  color: rgba(0, 0, 0, 0.5); }
+  .fa.disabled:hover {
+    cursor: not-allowed;
+    pointer-events: none; }
 
-.decision-container {
-  margin: auto; }
+.fa.disabled-siblings {
+  cursor: not-allowed;
+  pointer-events: none; }
 
-.highlight {
-  color: red; }
+.fa:hover {
+  cursor: pointer; }
 
-.disabled {
-  color: rgba(0, 0, 0, 0.65); }
+.space .fa {
+  pointer-events: none; }

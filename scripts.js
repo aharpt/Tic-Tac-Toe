@@ -3,21 +3,337 @@
 // board
 // pieces
 
-class Board {
-  board() {
-    $(this).append("<div id='space-1' class='space'></div>");
-  }
-}
+// class RandomNumber {
+//   randomNumber(highNumber) {
+//
+//   }
+// };
 
-
-
-
+// holds the current side up, X's or O's
+var currentSideUp;
+// holds the last clicked piece, if applicable
+var faClicked = $(this);
+// holds first side up
+var firstSideUp;
+// number of pieces placed
+var numOfPiecesPlaced = 0;
+// holds winner, if applicable
+var winner;
+// holds counter for number of pieces tic tac toe board
+var counter = 1;
 
 class RandomNumber {
-  randomNumber() {
-    return Math.floor(Math.random() * 2) + 1;
+  randomNumber(highNumber) {
+    return Math.floor(Math.random() * highNumber);
   }
 };
+
+const randomNumber = new RandomNumber();
+
+// board class
+class Board {
+  createBoardPiece(pieceContainer) {
+    var spaceNumber = "<div class='space' id='space-" + counter + "'></div>";
+    const container = pieceContainer;
+    $(container).append(spaceNumber);
+    counter++;
+  }
+};
+
+// new instance of Board class
+const board = new Board();
+
+// creates board pieces and appends them to correct containers
+board.createBoardPiece($(".outer-space-container"));
+board.createBoardPiece($(".outer-space-container"));
+board.createBoardPiece($(".outer-space-container"));
+$("body").append("<div id='outer-space-container-2' class='outer-space-container'></div>");
+
+board.createBoardPiece($("#outer-space-container-2"));
+board.createBoardPiece($("#outer-space-container-2"));
+board.createBoardPiece($("#outer-space-container-2"));
+
+$("body").append("<div id='outer-space-container-3' class='outer-space-container'></div>");
+board.createBoardPiece($("#outer-space-container-3"));
+board.createBoardPiece($("#outer-space-container-3"));
+board.createBoardPiece($("#outer-space-container-3"));
+
+
+$(".space").hover(function() {
+  if ($(this).children().length === 0) {
+    if (faClicked.hasClass("clicked") && !faClicked.hasClass("disabled-siblings")) {
+      $(this).addClass("active");
+    }
+  } else {
+    $(this).removeClass("active");
+  }
+});
+
+
+// Piece class
+class Piece {
+  createPiece(pieceType, container) {
+    if (pieceType === "X's") {
+      $(container).append("<i class='fa fa-times fa-3x disabled' aria-hidden='true'></i>");
+    } else if (pieceType === "O's") {
+      $(container).append("<i class='fa fa-opera fa-3x disabled' aria-hidden='true'></i>");
+    }
+  }
+
+};
+
+// holds new instance of Piece class
+const piece = new Piece();
+
+// appends piece container
+
+$("body").append("<div class='x-pieces-container'></div>");
+$("body").append("<div class='o-pieces-container'></div>");
+
+// creates pieces
+
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+piece.createPiece("X's", ".x-pieces-container");
+
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+piece.createPiece("O's", ".o-pieces-container");
+
+// holds the currently clicked piece and adds class clicked and removes class disabled
+
+$(".x-pieces-container .fa").on("click", function() {
+
+  $(".o-pieces-container .fa").removeClass("disabled-siblings");
+
+  faClicked = $(this);
+  if (!faClicked.siblings().hasClass("clicked")) {
+    $(this).siblings().addClass("disabled-siblings");
+    faClicked.addClass("clicked").removeClass("disabled");
+  }
+});
+
+$(".o-pieces-container .fa").on("click", function() {
+  $(".x-pieces-container .fa").removeClass("disabled-siblings");
+  faClicked = $(this);
+  if (!faClicked.siblings().hasClass("clicked")) {
+    $(this).siblings().addClass("disabled-siblings");
+    faClicked.addClass("clicked").removeClass("disabled");
+  }
+});
+
+
+
+
+class FirstTurn {
+  firstTurn() {
+    const decideFirstTurn = randomNumber.randomNumber(2);
+
+    if (decideFirstTurn === 0) {
+      firstSideUp = "X's";
+      alert("X's turn");
+      $(".x-pieces-container .fa").removeClass("disabled");
+      currentSideUp = "X's";
+    } else if (decideFirstTurn === 1) {
+      firstSideUp = "O's";
+      alert("O's turn")
+      $(".o-pieces-container .fa").removeClass("disabled");
+      currentSideUp = "O's";
+    }
+  }
+
+  currentSideUp() {
+    faClicked = "";
+    if ($(".x-pieces-container .fa").length < $(".o-pieces-container .fa").length) {
+      currentSideUp = "O's";
+      $(".x-pieces-container .fa").addClass("disabled");
+      $(".o-pieces-container .fa").removeClass("disabled");
+
+      $(".fa:not(.disabled)").click(function(){
+        $(this).addClass("clicked").removeClass("disabled");
+      });
+
+      console.log("X current side");
+
+    } else if ($(".o-pieces-container .fa").length < $(".x-pieces-container .fa").length) {
+      currentSideUp = "X's";
+      $(".o-pieces-container .fa").addClass("disabled");
+      $(".x-pieces-container .fa").removeClass("disabled");
+
+      $(".fa:not(.disabled)").click(function(){
+        $(this).addClass("clicked").removeClass("disabled");
+      });
+
+      console.log("O current side");
+    } else {
+      if (firstSideUp === "X's") {
+        $(".x-pieces-container .fa").removeClass("disabled");
+        $(".o-pieces-container .fa").addClass("disabled");
+      } else if (firstSideUp === "O's") {
+        $(".o-pieces-container .fa").removeClass("disabled");
+        $(".x-pieces-container .fa").addClass("disabled");
+      }
+
+      console.log("first side up is: " + firstSideUp);
+    }
+  }
+
+};
+
+const firstTurn = new FirstTurn();
+
+firstTurn.firstTurn();
+
+$(".disabled").click(function() {
+  $(this).addClass("disabled").removeClass("clicked");
+});
+
+// adds the currently selected piece to the clicked space
+
+
+
+class DecideWinner {
+  decideWinner() {
+    // ways someone could win
+    if ($("#outer-space-container-1").children().children(".fa-opera").length === 3 || $("#outer-space-container-2").children().children(".fa-opera").length === 3 || $("#outer-space-container-3").children().children(".fa-opera").length === 3) {
+
+      var winnerInterval = function() {
+        // alert("O's win");
+        $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+        $(".fa").addClass("disabled");
+      };
+
+      // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+      var winnerSetInterval = setInterval(winnerInterval, 500);
+      setInterval(function() {
+        clearInterval(winnerSetInterval);
+      }, 500);
+
+    } else if ($("#space-1").children(".fa-opera").length > 0 && $("#space-4").children(".fa-opera").length > 0 && $("#space-7").children(".fa-opera").length > 0 || $("#space-2").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-8").children(".fa-opera").length > 0 || $("#space-3").children(".fa-opera").length > 0 && $("#space-6").children(".fa-opera").length > 0 && $("#space-9").children(".fa-opera").length > 0) {
+          console.log("console.log");
+          var winnerInterval = function() {
+            $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+            $(".fa").addClass("disabled");
+          };
+
+          // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+          var winnerSetInterval = setInterval(winnerInterval, 500);
+          setInterval(function() {
+            clearInterval(winnerSetInterval);
+          }, 500);
+
+        } else if ($("#space-1").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-9").children(".fa-opera").length > 0 || $("#space-3").children(".fa-opera").length > 0 && $("#space-5").children(".fa-opera").length > 0 && $("#space-7").children(".fa-opera").length > 0) {
+              console.log("console.log");
+              var winnerInterval = function() {
+                $("body").append("<h3>O's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
+              };
+
+              // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+              var winnerSetInterval = setInterval(winnerInterval, 500);
+              setInterval(function() {
+                clearInterval(winnerSetInterval);
+              }, 500);
+
+            } else if ($("#outer-space-container-1").children().children(".fa-times").length === 3 || $("#outer-space-container-2").children().children(".fa-times").length === 3 || $("#outer-space-container-3").children().children(".fa-times").length === 3) {
+
+              var winnerInterval = function() {
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
+              };
+
+              // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+              var winnerSetInterval = setInterval(winnerInterval, 500);
+              setInterval(function() {
+                clearInterval(winnerSetInterval);
+              }, 500);
+
+            } else if ($("#space-1").children(".fa-times").length > 0 && $("#space-4").children(".fa-times").length > 0 && $("#space-7").children(".fa-times").length > 0 || $("#space-2").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-8").children(".fa-times").length > 0 || $("#space-3").children(".fa-times").length > 0 && $("#space-6").children(".fa-times").length > 0 && $("#space-9").children(".fa-times").length > 0) {
+              console.log("console.log");
+              var winnerInterval = function() {
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
+              };
+
+              // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+              var winnerSetInterval = setInterval(winnerInterval, 500);
+              setInterval(function() {
+                clearInterval(winnerSetInterval);
+              }, 500);
+
+            } else if ($("#space-1").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-9").children(".fa-times").length > 0 || $("#space-3").children(".fa-times").length > 0 && $("#space-5").children(".fa-times").length > 0 && $("#space-7").children(".fa-times").length > 0) {
+              console.log("console.log");
+              var winnerInterval = function() {
+                $("body").append("<h3>X's Win! Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
+            };
+
+              // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+              var winnerSetInterval = setInterval(winnerInterval, 500);
+              setInterval(function() {
+                clearInterval(winnerSetInterval);
+              }, 500);
+
+            } else if ($(".space").children(".fa").length === 9) {
+              var winnerInterval = function() {
+                $("body").append("<h3>Cat's game. Do you want to <a href='./'>Play again?</a></h3>");
+                $(".fa").addClass("disabled");
+            };
+
+              // http://stackoverflow.com/questions/109086/stop-setinterval-call-in-javascript
+              var winnerSetInterval = setInterval(winnerInterval, 500);
+              setInterval(function() {
+                clearInterval(winnerSetInterval);
+              }, 500);
+
+            }
+
+
+            $("#play-again-button").hover(function() {
+              console.log("World");
+              // https://stackoverflow.com/questions/11658847/refresh-webpage-programmatically-javascript
+              window.location.reload();
+            });
+
+  }
+};
+
+
+
+const Winner = new DecideWinner();
+
+
+$(".space").click(function() {
+  if (faClicked !== "" && $(this).children().length === 0) {
+    $(this).html(faClicked);
+  }
+  $(this).children(".fa").off("click");
+  faClicked.removeClass("clicked").addClass("disabled");
+  // numOfPiecesPlaced++;
+
+
+    Winner.decideWinner();
+
+  firstTurn.currentSideUp();
+});
+
+
+
+
+
+
+// old code
+
+
+// class RandomNumber {
+//   randomNumber() {
+//     return Math.floor(Math.random() * 2) + 1;
+//   }
+// };
 
 const $faOpera = $(".fa-opera");
 const $faTimes = $(".fa-times");
@@ -31,83 +347,3 @@ const $faTimesNotSelected = $(".fa-times.not-selected");
 
 const newRandomNumber = new RandomNumber();
 const randomNumberHolder = newRandomNumber.randomNumber();
-
-
-
-// decides who goes first, appends appropriate message, and changes appropriate elements html
-switch (randomNumberHolder) {
-  case 1:
-    document.querySelector(".decision-container").innerHTML = "<p>X's go first</p>";
-    $faOpera.addClass("disabled");
-    break;
-
-  case 2:
-    document.querySelector(".decision-container").innerHTML = "<p>O's go first</p>";
-    $faTimes.addClass("disabled");
-    break;
-}
-
-// jquery
-
-$(function() {
-
-  $fa.click(function() {
-    $(this).addClass(classHighlight);
-  });
-
-  $(".space").click(function() {
-    if ($(".not-selected").hasClass(classHighlight)) {
-      // this .fa
-        console.log(this);
-        var pieceUsed = $(".not-selected.highlight").removeClass("not-selected").get();
-
-        $(this).html(pieceUsed);
-        $(this).off("click");
-    }
-  });
-
-  $(".space .fa").off("click").parent(".space").off("click");
-
-});
-
-
-$fa.click(function() {
-
-  if ($xContainer.children().length > $oContainer.children().length) {
-    console.log("log");
-    document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $faTimes.removeClass("disabled");
-    $faOpera.addClass("disabled");
-
-  } else if ($oContainer.children().length > $xContainer.children().length) {
-    console.log("log");
-    document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $faOpera.removeClass("disabled");
-    $faTimes.addClass("disabled");
-
-  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 1 && $(".x-container").children().length < 5) {
-    document.querySelector(".decision-container").innerHTML = "<p>X's turn</p>";
-    $faOperaNotSelected.addClass("disabled");
-    $faTimesNotSelected.removeClass("disabled");
-
-  } else if ($oContainer.children().length === $xContainer.children().length && randomNumberHolder === 2 && $(".x-container").children().length < 5) {
-    document.querySelector(".decision-container").innerHTML = "<p>O's turn</p>";
-    $faTimesNotSelected.addClass("disabled");
-    $faOperaNotSelected.removeClass("disabled");
-  }
-
-
-
-
-});
-
-
-
-// figure out if someone wins the game
-
-/* if (space1 && space2 && space3 === x) {
-  x wins
-}
-
-*/
-// display result when the end of the game occurs
