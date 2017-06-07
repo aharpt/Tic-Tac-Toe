@@ -59,6 +59,17 @@ board.createBoardPiece($("#outer-space-container-3"));
 board.createBoardPiece($("#outer-space-container-3"));
 
 
+$(".space").hover(function() {
+  if ($(this).children().length === 0) {
+    if (faClicked.hasClass("clicked") && !faClicked.hasClass("disabled-siblings")) {
+      $(this).addClass("active");
+    }
+  } else {
+    $(this).removeClass("active");
+  }
+});
+
+
 // Piece class
 class Piece {
   createPiece(pieceType, container) {
@@ -289,7 +300,7 @@ const Winner = new DecideWinner();
 
 
 $(".space").click(function() {
-  if (faClicked !== "") {
+  if (faClicked !== "" && $(this).children().length === 0) {
     $(this).html(faClicked);
   }
   $(this).children(".fa").off("click");
